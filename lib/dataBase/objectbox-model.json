@@ -1,0 +1,67 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:8489462735688654838",
+      "lastPropertyId": "8:1340627254130035445",
+      "name": "Servicos",
+      "properties": [
+        {
+          "id": "1:7054967416711257064",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1019429952946126155",
+          "name": "solicitante",
+          "type": 9
+        },
+        {
+          "id": "3:4857898899383988404",
+          "name": "equipamento",
+          "type": 9
+        },
+        {
+          "id": "4:7256596770899412304",
+          "name": "marca",
+          "type": 9
+        },
+        {
+          "id": "5:3375897104735661237",
+          "name": "modelo",
+          "type": 9
+        },
+        {
+          "id": "6:5499391942522751222",
+          "name": "series",
+          "type": 9
+        },
+        {
+          "id": "7:3499441437876717450",
+          "name": "descricaoProblema",
+          "type": 9
+        },
+        {
+          "id": "8:1340627254130035445",
+          "name": "descricaoRealizada",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "1:8489462735688654838",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

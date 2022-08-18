@@ -32,7 +32,9 @@ dependencies:
   provider: ^6.0.3 
   intl: ^0.17.0   
   flutter_barcode_scanner: ^2.0.0
-  uuid: ^3.0.6  
+  uuid: ^3.0.6
+  objectbox: ^1.6.0  
+  objectbox_flutter_libs: ^ 1.6.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -47,6 +49,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^2.0.0
+  objectbox_generator:
+  mask_text_input_formatter: ^2.4.0  
 
 
 flutter_icons:
@@ -62,11 +67,26 @@ flutter_icons:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
 
+
+
+
+objectbox:
+  output_dir: dataBase
+
+
+  
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
+
+
+
+  # Or optionally specify the lib and test output folder separately.
+  # output_dir:
+  #   lib: custom
+  #   test: other
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
