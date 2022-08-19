@@ -1,10 +1,7 @@
 class Clientes {
-  String numeroCadastro;
-  String nome;
-  String endereco;
+  String? numeroCadastro;
+  String? nome;
+  String? endereco;
 
-  Clientes(
-      {required this.numeroCadastro,
-      required this.nome,
-      required this.endereco});
+  Clientes({this.numeroCadastro, this.nome, this.endereco});
 }

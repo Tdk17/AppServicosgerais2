@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:globalchaveimp/Utils/cores_impactus.dart';
 import 'package:globalchaveimp/Utils/sistemas_impactus.dart';
 import 'package:provider/provider.dart';
+import 'package:servicosimp/model/serviceslist.dart';
 import 'package:servicosimp/pages/autenticacao_page.dart';
 import 'package:servicosimp/pages/configuracao_page.dart';
 import 'package:servicosimp/pages/home_page.dart';
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => Autenticacao(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ServicesList(),
         ),
       ],
       child: MaterialApp(

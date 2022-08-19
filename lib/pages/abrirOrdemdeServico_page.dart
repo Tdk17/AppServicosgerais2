@@ -1,31 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:provider/provider.dart';
+import 'package:servicosimp/DadosMOkados/mokes.dart';
+import 'package:servicosimp/model/clientes.dart';
+import 'package:servicosimp/model/serviceslist.dart';
 import '../components/customTextForm.dart';
-import '../model/servicos.dart';
 
-class AbriOSPage extends StatelessWidget {
+class AbriOSPage extends StatefulWidget {
   AbriOSPage({Key? key}) : super(key: key);
 
+  @override
+  State<AbriOSPage> createState() => _AbriOSPageState();
+}
+
+class _AbriOSPageState extends State<AbriOSPage> {
   final textController = TextEditingController();
+  final textController2 = TextEditingController();
+  final textController3 = TextEditingController();
+  final textController4 = TextEditingController();
+  final textController5 = TextEditingController();
+  final textController6 = TextEditingController();
+  final textController7 = TextEditingController();
+  final textController8 = TextEditingController();
+  final textController9 = TextEditingController();
+  final textController10 = TextEditingController();
   final _formkey = GlobalKey<FormState>();
   final _formData = Map<String, Object>();
 
+  Clientes clientes = Clientes();
+
   void _submitForm() {
     _formkey.currentState?.save();
-    final newService = Servicos(
-      solicitante: _formData['solicitante'] as String,
-      equipamento: _formData['equipamento'] as String,
-      marca: _formData['marca'] as String,
-      modelo: _formData['modelo'] as String,
-      series: _formData['series'] as String,
-      descricaoProblema: _formData['descricaoProblema'] as String,
-      descricaoRealizada: _formData['descricaoRealizada'] as String,
-    );
+
+    Provider.of<ServicesList>(context, listen: false)
+        .addServicosFromData(_formData);
+    _formData.clear();
   }
 
   final dataFormat = MaskTextInputFormatter(
     mask: "##/##/##",
   );
+
   final horaFormat = MaskTextInputFormatter(
     mask: "##:##",
   );
@@ -36,7 +51,14 @@ class AbriOSPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Abrir OS'),
         actions: [
-          IconButton(onPressed: _submitForm, icon: Icon(Icons.save)),
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  _submitForm();
+                  
+                });
+              },
+              icon: Icon(Icons.save)),
         ],
       ),
       body: Container(
@@ -89,12 +111,14 @@ class AbriOSPage extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 3,
                       child: CustomFormField(
                         label: 'Nº Cliente',
+                        controller: textController10,
                       ),
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width / 1.5,
                       child: CustomFormField(
-                        label: 'Nome do Cliente',
+                        enabled: false,
+                        label: clientes1.nome,
                       ),
                     ),
                   ],
@@ -103,7 +127,8 @@ class AbriOSPage extends StatelessWidget {
                 Container(
                   width: MediaQuery.of(context).size.width / 1,
                   child: CustomFormField(
-                    label: 'Endereço',
+                    label: clientes1.endereco,
+                    enabled: false,
                   ),
                 ),
                 //solicitante
@@ -111,6 +136,7 @@ class AbriOSPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1,
                   child: CustomFormField(
                     label: 'Solicitante',
+                    controller: textController,
                     onSaved: (solicitante) =>
                         _formData['solicitante'] = solicitante ?? '',
                   ),
@@ -120,6 +146,7 @@ class AbriOSPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1,
                   child: CustomFormField(
                     label: 'Equipamentos',
+                    controller: textController2,
                     onSaved: (equipamento) =>
                         _formData['equipamnetos'] = equipamento ?? '',
                   ),
@@ -129,6 +156,7 @@ class AbriOSPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1,
                   child: CustomFormField(
                     label: 'Marca',
+                    controller: textController3,
                     onSaved: (marca) => _formData['marca'] = marca ?? '',
                   ),
                 ),
@@ -137,6 +165,7 @@ class AbriOSPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1,
                   child: CustomFormField(
                     label: 'Modelo',
+                    controller: textController4,
                     onSaved: (modelo) => _formData['modelo'] = modelo ?? '',
                   ),
                 ),
@@ -145,6 +174,7 @@ class AbriOSPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1,
                   child: CustomFormField(
                     label: 'Series',
+                    controller: textController5,
                     onSaved: (series) => _formData['series'] = series ?? '',
                   ),
                 ),
@@ -154,6 +184,7 @@ class AbriOSPage extends StatelessWidget {
                   child: CustomFormField(
                     label: 'Descrição dos Problemas',
                     linha: 5,
+                    controller: textController6,
                     onSaved: (decriptionP) =>
                         _formData['descricaoProblema'] = decriptionP ?? '',
                   ),
@@ -164,8 +195,9 @@ class AbriOSPage extends StatelessWidget {
                   child: CustomFormField(
                     label: 'descricaoRealizada',
                     linha: 5,
+                    controller: textController7,
                     onSaved: (decriptionR) =>
-                        _formData['Descrição do Realizado'] = decriptionR ?? '',
+                        _formData['descricaoRealizada'] = decriptionR ?? '',
                   ),
                 ),
                 Row(
@@ -175,7 +207,8 @@ class AbriOSPage extends StatelessWidget {
                       child: CustomFormField(
                         inputFormatters: [dataFormat],
                         label: 'Data',
-                        onSaved: (data) => _formData['Data'] = data ?? '',
+                        controller: textController8,
+                        onSaved: (data) => _formData['data'] = data ?? '',
                       ),
                     ),
                     Container(
@@ -183,10 +216,34 @@ class AbriOSPage extends StatelessWidget {
                       child: CustomFormField(
                         inputFormatters: [horaFormat],
                         label: 'Horas trabalhadas',
-                        onSaved: (hora) => _formData['Horas'] = hora ?? '',
+                        controller: textController9,
+                        onSaved: (hora) => _formData['horas'] = hora ?? '',
                       ),
                     ),
                   ],
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.image,
+                        size: 50,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.camera_alt,
+                        size: 50,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 Container(
                     width: MediaQuery.of(context).size.width / 1,

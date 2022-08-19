@@ -8,6 +8,7 @@ import 'package:globalchaveimp/Data/store.dart';
 import '../components/app_drawer.dart';
 import '../utils/constantes.dart';
 import 'abrirOrdemdeServico_page.dart';
+import 'consultarOs.dart';
 
 class PrincipalPage extends StatefulWidget {
   const PrincipalPage({Key? key}) : super(key: key);
@@ -177,7 +178,10 @@ class _PrincipalPageState extends State<PrincipalPage> {
             tooltip: Constantes.novoPedido,
           ),
           IconButton(
-            onPressed: () => {}, //_consultarComanda(context),
+            onPressed: () => {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => ConsutarOs()))
+            }, //_consultarComanda(context),
             icon: const Icon(Icons.search),
             tooltip: Constantes.consultarComanda,
           ),
@@ -207,7 +211,10 @@ class _PrincipalPageState extends State<PrincipalPage> {
           ),
           ActionButton(
             icon: const Icon(Icons.search),
-            onPressed: () => {}, // _consultarComanda(context),
+            onPressed: () => {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => ConsutarOs()))
+            }, // _consultarComanda(context),
             tooltip: Constantes.consultarComanda,
           ),
         ],
